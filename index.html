@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REELSSTUDIO.DE - Kreative Videos & Designs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --main-color: #FF3D67;
+            --secondary-color: #00C9FF;
+            --accent-color: #FFD700;
+            --dark-color: #1A1A2E;
+            --light-color: #F8F9FA;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        /* Glitzer-Effekt */
+        .glitter {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glitter::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 45%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 55%
+            );
+            transform: rotate(30deg);
+            animation: glitter 4s infinite;
+        }
+        
+        @keyframes glitter {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        /* Header mit Neon-Effekt */
+        header {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #16213E 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                var(--main-color), 
+                var(--secondary-color), 
+                var(--accent-color), 
+                var(--secondary-color), 
+                var(--main-color));
+            animation: rainbow 5s linear infinite;
+            background-size: 400% 100%;
+        }
+        
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 61, 103, 0.7),
+                         0 0 20px rgba(255, 61, 103, 0.5),
+                         0 0 30px rgba(255, 61, 103, 0.3);
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 61, 103, 0.7),
+                             0 0 20px rgba(255, 61, 103, 0.5),
+                             0 0 30px rgba(255, 61, 103, 0.3);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 61, 103, 0.8),
+                             0 0 25px rgba(255, 61, 103, 0.6),
+                             0 0 35px rgba(255, 61, 103, 0.4),
+                             0 0 45px rgba(255, 61, 103, 0.2);
+            }
+        }
+        
+        header p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            font-weight: 900;
+            color: var(--accent-color);
+            font-size: 2.2rem;
+            display: inline-block;
+            transform: rotate(-5deg);
+            text-shadow: 3px 3px 0 var(--main-color),
+                        -1px -1px 0 var(--secondary-color);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1.2rem 0;
+        }
+        
+        nav li {
+            margin: 0 2rem;
+            position: relative;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Hauptinhalt */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--main-color), var(--secondary-color));
+        }
+        
+        h2 {
+            color: var(--main-color);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+        
+        /* Über mich */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 10px 10px 0 var(--secondary-color),
+                       -10px -10px 0 var(--main-color);
+            transition: all 0.5s;
+            border: 5px solid white;
+        }
+        
+        .about-image img:hover {
+            transform: rotate(-5deg) scale(1.05);
+            box-shadow: 15px 15px 0 var(--secondary-color),
+                       -15px -15px 0 var(--main-color);
+        }
+        
+        /* Preis-Box mit Puls-Effekt */
+        .pricing-box {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #16213E 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 61, 103, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 61, 103, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 61, 103, 0); }
+        }
+        
+        .pricing-box h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem 0;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Portfolio */
+        .portfolio-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .portfolio-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-item-content {
+            padding: 1.5rem;
+        }
+        
+        .portfolio-item h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--main-color), var(--secondary-color));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: linear-gradient(90deg, var(--secondary-color), var(--main-color));
+        }
+        
+        /* Kontakt */
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            width: 250px;
+            transition: all 0.5s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--main-color);
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .contact-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--main-color);
+        }
+        
+        .contact-card h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #16213E 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                var(--main-color), 
+                var(--secondary-color), 
+                var(--accent-color), 
+                var(--secondary-color), 
+                var(--main-color));
+            animation: rainbow 5s linear infinite;
+            background-size: 400% 100%;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--main-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Floating Elements */
+        .floating {
+            position: absolute;
+            animation: floating 3s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .shape1 {
+            top: 20%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            background: var(--main-color);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+        }
+        
+        .shape2 {
+            top: 60%;
+            right: 8%;
+            width: 150px;
+            height: 150px;
+            background: var(--secondary-color);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: 0.5s;
+        }
+        
+        .shape3 {
+            bottom: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation-delay: 1s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about {
+                flex-direction: column;
+            }
+            
+            .portfolio-items {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-card {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .shape1, .shape2, .shape3 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating shape1"></div>
+    <div class="floating shape2"></div>
+    <div class="floating shape3"></div>
+    
+    <!-- Header -->
+    <header class="glitter">
+        <div class="animate__animated animate__fadeInDown">
+            <h1>KREATIVE VIDEOBEARBEITUNG</h1>
+            <p>Professionelle Schnitte • Atemberaubende Designs • Unschlagbare Preise</p>
+            <div class="logo animate__animated animate__pulse animate__infinite">REELSSTUDIO.DE</div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about" class="animate__animated animate__fadeIn">Über mich</a></li>
+            <li><a href="#services" class="animate__animated animate__fadeIn animate__delay-1s">Dienstleistungen</a></li>
+            <li><a href="#portfolio" class="animate__animated animate__fadeIn animate__delay-2s">Portfolio</a></li>
+            <li><a href="#contact" class="animate__animated animate__fadeIn animate__delay-3s">Kontakt</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hauptinhalt -->
+    <div class="container">
+        <!-- Über mich -->
+        <section id="about" class="animate__animated animate__fadeIn">
+            <h2>Über mich</h2>
+            <div class="about">
+                <div class="about-text">
+                    <p>Hey, ich bin <strong>Matteo</strong>, 16 Jahre alt und der kreative Kopf hinter <span class="logo">REELSSTUDIO.DE</span>. Videobearbeitung ist meine Leidenschaft und ich liebe es, Content Creators zu helfen, ihre Visionen zum Leben zu erwecken!</p>
+                    <p>Mit einem scharfen Auge für Details und einem Gespür für moderne Ästhetik erstelle ich fesselnde Videos und Designs, die garantiert Aufmerksamkeit erregen.</p>
+                    <p>Ich arbeite mit den neuesten Tools und Techniken, um sicherzustellen, dass deine Inhalte professionell und gleichzeitig einzigartig aussehen.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1579403124614-197f69d8187b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Matteo - Video Editor & Designer" class="animate__animated animate__zoomIn animate__delay-1s">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Dienstleistungen -->
+        <section id="services" class="animate__animated animate__fadeIn animate__delay-1s">
+            <h2>Meine Dienstleistungen</h2>
+            <p>Ich biete hochwertige Videobearbeitung und Design-Dienstleistungen zu einem unschlagbaren Preis:</p>
+            
+            <div class="pricing-box animate__animated animate__pulse animate__infinite animate__slower">
+                <h3>SPECIAL OFFER</h3>
+                <div class="price">10€/h</div>
+                <p>Das ist mein einziges Angebot - transparent und unkompliziert!</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 5px solid var(--main-color);">
+                    <h3 style="color: var(--main-color); margin-bottom: 1rem;">🎬 Video Editing</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Professionelle Schnitte</li>
+                        <li>Übergänge & Effekte</li>
+                        <li>Farbkorrektur</li>
+                        <li>Audio-Bearbeitung</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 5px solid var(--secondary-color);">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">🎨 Thumbnail Design</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Aufmerksamkeitsstarke Designs</li>
+                        <li>Custom Styles</li>
+                        <li>Hohe Klickraten</li>
+                        <li>Schnelle Lieferung</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; border-left: 5px solid var(--accent-color);">
+                    <h3 style="color: var(--accent-color); margin-bottom: 1rem;">✨ Social Media</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Reels/TikTok Editing</li>
+                        <li>Instagram Stories</li>
+                        <li>YouTube Intros/Outros</li>
+                        <li>Trendige Effekte</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio -->
+        <section id="portfolio" class="animate__animated animate__fadeIn animate__delay-2s">
+            <h2>Portfolio</h2>
+            <p>Hier sind einige Beispiele meiner Arbeit - klick dich durch!</p>
+            
+            <h3 style="margin-top: 2rem; color: var(--secondary-color);">🎥 Beispiel Videos</h3>
+            <div class="portfolio-items">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Video Beispiel 1">
+                    <div class="portfolio-item-content">
+                        <h3>Calm</h3>
+                        <p>Ruhig, befriedigend</p>
+                        <a href="https://drive.google.com/file/d/1UaKTDgNiTDr8nA07zAfS2UyAWJ18a7Zq/view?usp=drivesdk" class="btn" target="_blank">Video ansehen</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Video Beispiel 2">
+                    <div class="portfolio-item-content">
+                        <h3>Cinematic Look</h3>
+                        <p>Trendige Effekte für Instagram/TikTok</p>
+                        <a href="https://drive.google.com/file/d/1Ua8YbB7vijjV_Oc5TMHT-49aL7zFCOUN/view?usp=drivesdk" class="btn" target="_blank">Video ansehen</a>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Video Beispiel 3">
+                    <div class="portfolio-item-content">
+                        <h3>Werbung</h3>
+                        <p>Lustig, kreativ</p>
+                        <a href="https://drive.google.com/file/d/1PKQtH0Lci4tV76IW0tbRxlFl5ZAynlxb/view?usp=drivesdk" class="btn" target="_blank">Video ansehen</a>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 3rem; color: var(--main-color);">🖼️ Beispiel Thumbnail</h3>
+            <div class="portfolio-items">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Thumbnail Beispiel">
+                    <div class="portfolio-item-content">
+                        <h3>Custom Thumbnail Design</h3>
+                        <p>Aufmerksamkeitsstark & klickoptimiert</p>
+                        <a href="https://drive.google.com/file/d/1UZf-JveuZ5hNRX_qgOlcHN-k-wyo-id-/view?usp=drivesdk" class="btn" target="_blank">Thumbnail ansehen</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Kontakt -->
+        <section id="contact" class="animate__animated animate__fadeIn animate__delay-3s">
+            <h2>Kontakt</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Bereit, deine Videos auf das nächste Level zu bringen? Kontaktiere mich jetzt und lass uns zusammen etwas Großartiges erschaffen!</p>
+            
+            <div class="contact-methods">
+                <div class="contact-card animate__animated animate__bounceIn animate__delay-1s">
+                    <i>📱</i>
+                    <h3>WhatsApp</h3>
+                    <p>+49 1512 8966842</p>
+                    <a href="https://wa.me/4915128966842" class="btn" target="_blank">Nachricht senden</a>
+                </div>
+                
+                <div class="contact-card animate__animated animate__bounceIn animate__delay-2s">
+                    <i>📸</i>
+                    <h3>Instagram</h3>
+                    <p>@reelsstudio.de</p>
+                    <a href="https://www.instagram.com/reelsstudio.de?igsh=MWRxbm1zamJseW9xdA==" class="btn" target="_blank">Profil besuchen</a>
+                </div>
+                
+                <div class="contact-card animate__animated animate__bounceIn animate__delay-3s">
+                    <i>✉️</i>
+                    <h3>Studio</h3>
+                    <p>REELSSTUDIO.DE</p>
+                    <a href="#contact" class="btn">Kontaktformular</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="font-size: 2.5rem; margin-bottom: 1rem;">REELSSTUDIO.DE</div>
+        <p>Kreative Videobearbeitung & Design</p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/reelsstudio.de?igsh=MWRxbm1zamJseW9xdA==" class="social-link" target="_blank">📸</a>
+            <a href="https://wa.me/4915128966842" class="social-link" target="_blank">💬</a>
+        </div>
+        
+        <p style="margin-top: 2rem;">&copy; 2023 REELSSTUDIO.DE | Matteo | Alle Rechte vorbehalten</p>
+    </footer>
+    
+    <script>
+        // Einfache Animation beim Scrollen
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Glitzer-Effekt für Buttons beim Hovern
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.classList.add('glitter');
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.classList.remove('glitter');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
